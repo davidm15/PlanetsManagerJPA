@@ -17,7 +17,7 @@ public class Universe {
  
 	private String name;
  
-	@ManyToMany(mappedBy = "universe",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "universes",fetch=FetchType.EAGER)
 	private List<PlanetModel> planets;
  
 	public Universe() {
