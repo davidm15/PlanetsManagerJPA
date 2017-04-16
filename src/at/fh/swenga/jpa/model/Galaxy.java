@@ -1,7 +1,5 @@
 package at.fh.swenga.jpa.model;
  
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
  
@@ -27,7 +25,7 @@ public class Galaxy {
  
     @OneToMany(mappedBy="galaxy")
     @OrderBy("name")
-    private ArrayList<PlanetModel> planets;
+    private Set<PlanetModel> planets;
  
 	@Version
 	long version;
@@ -59,8 +57,8 @@ public class Galaxy {
 	}
  
 	public void addPlanet(PlanetModel planet) {
-		if (planet==null) {
-			planet= new ArrayList<PlanetModel>();
+		if (planets==null) {
+			planets= new HashSet<PlanetModel>();
 		}
 		planets.add(planet);
 	}

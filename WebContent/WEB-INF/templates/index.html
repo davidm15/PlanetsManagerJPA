@@ -70,12 +70,41 @@
 				</table>
 				
 			<!--  list all Departments ----------------------------------------------------------- -->
-				
+			<div class="col-md-4 col-md-offset-2"  >
+					<h1>Departments</h1>
+					<div class="tree">
+						<ul>
+						<li th:each="galaxy : ${galaxys}">
+							<a href="#" th:text="${galaxy.name}"> </a>
+								<ul>
+									<li th:each="planet : ${galaxy.planets}">
+										<a href="#" th:text="${planet.name +' '+planet.surface}"> </a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
 
 			<!--  list all Departments ----------------------------------------------------------- -->
 
 			<!--  list all projects ----------------------------------------------------------- -->
-
+			<div class="col-md-4 col-md-offset-1" >
+					<h1>Projects</h1>
+					<div class="tree">
+						<ul>
+							<li th:each="universe:${universes}">
+								<a href="#" th:text="${universe.name}"></a>
+									<ul>
+										<li th:each="planet:${universe.planets}">
+											<a href="#" th:text="${planet.name +' '+planet.surface}"> </a>											
+										</li>
+									</ul>
+								</li>
+						</ul>
+					</div>
+				</div>
+ 
 
 			<!--  list all projects ----------------------------------------------------------- -->
 				

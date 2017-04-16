@@ -1,11 +1,19 @@
 package at.fh.swenga.jpa.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 
@@ -13,6 +21,11 @@ import javax.persistence.Embedded;
 @Table (name = "Planet")
 public class PlanetModel implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +45,12 @@ public class PlanetModel implements java.io.Serializable{
 	
 	@Embedded
 	Moon moon;
+	
+	@ManyToOne (cascade = CascadeType.PERSIST,fetch=FetchType.EAGER)
+	Galaxy galaxy;
+	
+	@ManyToMany(cascade=CascadeType.PERSIST)  
+	private List<Universe> universes;
 	
 	public PlanetModel() {
 		
@@ -83,6 +102,28 @@ public class PlanetModel implements java.io.Serializable{
 	public void setMoon(Moon moon) {
 		this.moon = moon;
 	}
+
+	public Galaxy getGalaxy() {
+		return galaxy;
+	}
+
+	public void setGalaxy(Galaxy galaxy) {
+		this.galaxy = galaxy;
+	}
+
+	public List<Universe> getUniverses() {
+		return universes;
+	}
+
+	public void setUniverses(List<Universe> universes) {
+		this.universes = universes;
+	}
 	
+	public void addUniverse(Universe universe) {
+		if (universes== null) {
+			universes= new ArrayList<Universe>();
+		}
+		universes.add(universe);
+	}
 	
 }
